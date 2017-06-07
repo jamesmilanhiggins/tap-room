@@ -5,7 +5,8 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <h1>Tap Room</h1>
-  <list-keg [childKegs]="kegs" (oneLessPintSender)="oneLessPint($event)"></list-keg>
+  <list-keg [childKegs]="kegs" (oneLessPintSender)="oneLessPint($event)" (editKegSender)="editKeg($event)"></list-keg>
+  <edit-keg *ngIf="edit" [childKeg]="selectedKeg"></edit-keg>
   `
 })
 
@@ -15,6 +16,14 @@ export class AppComponent {
     new Keg('Code24', '10Barrel', 3, 5),
     new Keg('Budvar', 'Budweiser', 5, 5)
   ];
+
+  edit: boolean = false;
+  selectedKeg = null;
+
+  editKeg(keg) {
+    this.edit = true;
+    this.selectedKeg = keg;
+  }
 
   oneLessPint(keg) {
     keg.pints -= 1;
