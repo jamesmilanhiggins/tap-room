@@ -1,41 +1,11 @@
 import { Component } from '@angular/core';
+import { Keg } from './keg.model';
 
 @Component({
   selector: 'app-root',
   template: `
   <h1>Tap Room</h1>
-  <div *ngFor="let keg of kegs">
-    <h2>{{keg.name}} - {{keg.brand}}</h2>
-    <h3>Details:</h3>
-    <p [class]="alcoholColor(keg)">Alcohol content: {{keg.alcoholContent}}% </p>
-    <p [class]="priceColor(keg)">Price per pint: USD {{keg.price}} </p>
-    <p [class]="pintsColor(keg)">Pints left: {{keg.pints}}</p>
-    <button (click)="oneLessPint(keg)">Sell a pint</button>
-    <h3>Edit:</h3>
-    <form>
-      <label>Name:</label>
-      <input [(ngModel)]="keg.name" name="name">
-      <label>Brand:</label>
-      <input [(ngModel)]="keg.brand" name="brand">
-      <label>Price:</label>
-      <input [(ngModel)]="keg.price" name="price">
-      <label>Alcohol content:</label>
-      <input [(ngModel)]="keg.alcoholContent" name="alcoholContent">
-    </form>
-    <hr>
-  </div>
-
-  <form>
-    <label>Name:</label>
-    <input #newName>
-    <label>Brand:</label>
-    <input #newBrand>
-    <label>Price:</label>
-    <input #newPrice>
-    <label>Alcohol content:</label>
-    <input #newAlcoholContent>
-    <button (click)="newKeg(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value)">New Keg</button>
-  </form>
+  <list-keg [childKegs]="kegs" (oneLessPintSender)="oneLessPint($event)"></list-keg>
   `
 })
 
@@ -53,33 +23,4 @@ export class AppComponent {
   newKeg(newName, newBrand, newPrice, newAlcoholContent) {
     this.kegs.push(new Keg(newName, newBrand, parseInt(newPrice), parseInt(newAlcoholContent)));
   }
-
-  pintsColor(keg) {
-    if (keg.pints < 10) {
-      return "bg-danger";
-    } else {
-      return "bg-info";
-    }
-  }
-
-  priceColor(keg) {
-    if (keg.price > 7) {
-      return "bg-danger";
-    } else {
-      return "bg-info";
-    }
-  }
-
-  alcoholColor(keg) {
-    if(keg.alcoholContent > 6) {
-      return "bg-danger";
-    }else {
-      return "bg-info";
-    }
-  }
-}
-
-export class Keg {
-  public pints: number = 12;
-  constructor (public name: string, public brand: string, public price: number, public alcoholContent: number) { }
 }
