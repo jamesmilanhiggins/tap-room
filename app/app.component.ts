@@ -5,8 +5,10 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <h1>Tap Room</h1>
-  <list-keg [childKegs]="kegs" (oneLessPintSender)="oneLessPint($event)" (editKegSender)="editKeg($event)"></list-keg>
+  <list-keg [childKegs]="kegs" (oneLessPintSender)="oneLessPint($event)" (editKegSender)="editKeg($event)" (deleteKegSender)="deleteKeg($event)"></list-keg>
   <edit-keg *ngIf="edit" [childKeg]="selectedKeg"></edit-keg>
+  <hr>
+  <new-keg (newKegSender)="storeNewKeg($event)"></new-keg>
   `
 })
 
@@ -25,11 +27,16 @@ export class AppComponent {
     this.selectedKeg = keg;
   }
 
+  deleteKeg(keg) {
+    var i = this.kegs.indexOf(keg);
+    this.kegs.splice(i, 1);
+  }
+
   oneLessPint(keg) {
     keg.pints -= 1;
   }
 
-  newKeg(newName, newBrand, newPrice, newAlcoholContent) {
-    this.kegs.push(new Keg(newName, newBrand, parseInt(newPrice), parseInt(newAlcoholContent)));
+  storeNewKeg(createdkeg) {
+    this.kegs.push(createdkeg);
   }
 }

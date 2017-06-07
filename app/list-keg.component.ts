@@ -12,7 +12,8 @@ import { Keg } from './keg.model';
     <p [class]="priceColor(keg)">Price per pint: USD {{keg.price}} </p>
     <p [class]="pintsColor(keg)">Pints left: {{keg.pints}}</p>
     <button (click)="oneLessPint(keg)">Sell a pint</button>
-    <button (click)="editKeg(keg)">Edit pint</button>
+    <button (click)="editKeg(keg)">Edit Keg</button>
+    <button (click)="deleteKeg(keg)">Delete Keg</button>
   </div>
   `
 })
@@ -21,6 +22,7 @@ export class ListKegComponent {
   @Input() childKegs: Keg[];
   @Output() oneLessPintSender = new EventEmitter;
   @Output() editKegSender = new EventEmitter;
+  @Output() deleteKegSender = new EventEmitter;
 
   oneLessPint(keg) {
     this.oneLessPintSender.emit(keg);
@@ -28,6 +30,10 @@ export class ListKegComponent {
 
   editKeg(keg) {
     this.editKegSender.emit(keg);
+  }
+
+  deleteKeg(keg) {
+    this.deleteKegSender.emit(keg);
   }
 
   pintsColor(keg) {
