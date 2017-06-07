@@ -22,6 +22,18 @@ import { Component } from '@angular/core';
     </form>
     <hr>
   </div>
+
+  <form>
+    <label>Name:</label>
+    <input #newName>
+    <label>Brand:</label>
+    <input #newBrand>
+    <label>Price:</label>
+    <input #newPrice>
+    <label>Alcohol content:</label>
+    <input #newAlcoholContent>
+    <button (click)="newKeg(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value)">New Keg</button>
+  </form>
   `
 })
 
@@ -34,6 +46,10 @@ export class AppComponent {
 
   oneLessPint(keg) {
     keg.pints -= 1
+  }
+
+  newKeg(newName, newBrand, newPrice, newAlcoholContent) {
+    this.kegs.push(new Keg(newName, newBrand, parseInt(newPrice), parseInt(newAlcoholContent)));
   }
 }
 
