@@ -5,9 +5,11 @@ import { Component } from '@angular/core';
   template: `
   <h1>Tap Room</h1>
   <div *ngFor="let keg of kegs">
-    <h2 [class]="priceColor(keg)">{{keg.name}} - {{keg.brand}}</h2>
+    <h2>{{keg.name}} - {{keg.brand}}</h2>
     <h3>Details:</h3>
-    <p [class]="lessThanTenPints(keg)">{{keg.alcoholContent}}% - USD {{keg.price}} - pints: {{keg.pints}}</p>
+    <p [class]="alcoholColor(keg)">Alcohol content: {{keg.alcoholContent}}% </p>
+    <p [class]="priceColor(keg)">Price per pint: USD {{keg.price}} </p>
+    <p [class]="pintsColor(keg)">Pints left: {{keg.pints}}</p>
     <button (click)="oneLessPint(keg)">Sell a pint</button>
     <h3>Edit:</h3>
     <form>
@@ -45,26 +47,36 @@ export class AppComponent {
   ];
 
   oneLessPint(keg) {
-    keg.pints -= 1
+    keg.pints -= 1;
   }
 
   newKeg(newName, newBrand, newPrice, newAlcoholContent) {
     this.kegs.push(new Keg(newName, newBrand, parseInt(newPrice), parseInt(newAlcoholContent)));
   }
-  lessThanTenPints(keg) {
+
+  pintsColor(keg) {
     if (keg.pints < 10) {
       return "bg-danger";
-    }
-  }
-
-  priceColor(keg) {
-    if (keg.price > 5) {
-      return "bg-warning";
     } else {
       return "bg-info";
     }
   }
 
+  priceColor(keg) {
+    if (keg.price > 7) {
+      return "bg-danger";
+    } else {
+      return "bg-info";
+    }
+  }
+
+  alcoholColor(keg) {
+    if(keg.alcoholContent > 6) {
+      return "bg-danger";
+    }else {
+      return "bg-info";
+    }
+  }
 }
 
 export class Keg {
