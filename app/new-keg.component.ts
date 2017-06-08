@@ -4,20 +4,23 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'new-keg',
   template: `
+  <h2> Add a new keg</h2>
     <form>
-      <label>Name:</label>
-      <input #newName>
-      <label>Brand:</label>
-      <input #newBrand>
-      <label>Price:</label>
-      <input #newPrice>
-      <label>Alcohol content:</label>
-      <input #newAlcoholContent>
-      <label>Country of origin:</label>
-      <input #newCountry>
-      <label>Beer Type:</label>
-      <input #newBeerType>
-      <button (click)="createKeg(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newCountry.value, newBeerType.value)">New Keg</button>
+      <fieldset>
+        <label>Name:</label>
+        <input #newName type="text">
+        <label>Brand:</label>
+        <input #newBrand type="text">
+        <label>Price:</label>
+        <input #newPrice type="text">
+        <label>Alcohol content:</label>
+        <input #newAlcoholContent type="text">
+        <label>Country of origin:</label>
+        <input #newCountry type="text">
+        <label>Beer Type:</label>
+        <input #newBeerType type="text">
+        <button class="button button-outline" (click)="createKeg(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newCountry.value, newBeerType.value)">New Keg</button>
+      </fieldset>
     </form>
   `
 })
