@@ -9,7 +9,7 @@ import { Keg } from './keg.model';
 
 export class CountryPipe implements PipeTransform {
   transform(input: Keg[], country) {
-    var output: Keg[] =[];
+    var output: Keg[] = [];
     if(country === "allCountries") {
       return input;
     } else {

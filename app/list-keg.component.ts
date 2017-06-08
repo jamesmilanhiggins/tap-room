@@ -5,13 +5,20 @@ import { Keg } from './keg.model';
   selector: 'list-keg',
   template: `
   <h1>Test List Keg</h1>
-  <select (change)="onChange($event.target.value)">
+  <select (change)="onChangeCountry($event.target.value)">
     <option value="allCountries" selected="selected">All Countries</option>
     <option value="UK">UK</option>
     <option value="USA">US</option>
     <option value="CZ">CZ</option>
   </select>
-  <div *ngFor="let keg of childKegs | country:filterCountry">
+  <select (change)="onChangeType($event.target.value)">
+    <option value="allBeers" selected="selected">All Beers</option>
+    <option value="IPA">IPA</option>
+    <option value="pale-ale">Pale Ale</option>
+    <option value="red-ale">Red Ale</option>
+    <option value="stout">Stout</option>
+  </select>
+  <div *ngFor="let keg of childKegs | country:filterCountry | beerType:filterBeerType">
 
     <h2>{{keg.name}} - {{keg.brand}}</h2>
     <h3>Details:</h3>
@@ -34,9 +41,13 @@ export class ListKegComponent {
   @Output() deleteKegSender = new EventEmitter;
 
   filterCountry: string = "allCountries";
+  filterBeerType: string = "allBeers";
 
-  onChange(optionFromMenu) {
+  onChangeCountry(optionFromMenu) {
     this.filterCountry = optionFromMenu;
+  }
+  onChangeType(optionFromMenu) {
+    this.filterBeerType = optionFromMenu;
   }
 
   oneLessPint(keg) {
