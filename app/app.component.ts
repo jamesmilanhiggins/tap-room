@@ -14,9 +14,9 @@ import { Keg } from './keg.model';
 
 export class AppComponent {
   kegs: Keg[] = [
-    new Keg('Punk IPA', 'Brewdog', 9, 7),
-    new Keg('Code24', '10Barrel', 3, 5),
-    new Keg('Budvar', 'Budweiser', 5, 5)
+    new Keg('Punk IPA', 'Brewdog', 9, 7, "UK", "IPA"),
+    new Keg('Code24', '10Barrel', 3, 5, "USA", "Pale Ale"),
+    new Keg('Budvar', 'Budweiser', 5, 5, "CZ", "Pale Ale")
   ];
 
   edit: boolean = false;

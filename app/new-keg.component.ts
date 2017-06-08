@@ -13,7 +13,11 @@ import { Keg } from './keg.model';
       <input #newPrice>
       <label>Alcohol content:</label>
       <input #newAlcoholContent>
-      <button (click)="createKeg(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value)">New Keg</button>
+      <label>Country of origin:</label>
+      <input #newCountry>
+      <label>Beer Type:</label>
+      <input #newBeerType>
+      <button (click)="createKeg(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newCountry.value, newBeerType.value)">New Keg</button>
     </form>
   `
 })
@@ -21,8 +25,8 @@ import { Keg } from './keg.model';
 export class NewKegComponent{
   @Output() newKegSender = new EventEmitter;
 
-  createKeg(newName, newBrand, newPrice, newAlcoholContent) {
-    let createdKeg = new Keg(newName, newBrand, newPrice, newAlcoholContent)
+  createKeg(newName, newBrand, newPrice, newAlcoholContent, newCountry, newBeerType) {
+    let createdKeg = new Keg(newName, newBrand, newPrice, newAlcoholContent, newCountry, newBeerType)
     this.newKegSender.emit(createdKeg);
   }
 }
