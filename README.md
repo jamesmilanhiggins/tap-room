@@ -1,6 +1,6 @@
 # _Tap Room_
 
-#### _This app lets users input kegs and view, edit and delete, Thursday, June 8, 2017_
+#### _This app lets local bar owners input kegs and view, edit and delete, Thursday, June 8, 2017_
 
 #### By _**James Higgins and Niklas Long**_
 
